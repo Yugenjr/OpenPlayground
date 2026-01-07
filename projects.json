@@ -976,5 +976,16 @@
     "icon": "ri-cursor-line",
     "coverClass": "particle-cover"
   }
+  ,
+  {
+  "title": "Drawing Canvas",
+  "category": "game",
+  "description": "A simple interactive canvas that lets users draw freely with adjustable brush size and color.",
+  "tech": ["HTML", "CSS", "JavaScript", "Canvas"],
+  "link": "./projects/simple-drawing-canvas/index.html",
+  "icon": "ri-brush-line",
+  "coverClass": "drawing-canvas-cover"
+}
+
 
 ]
