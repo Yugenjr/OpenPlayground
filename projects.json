@@ -1,4 +1,15 @@
 [
+
+  {
+    "title": "Pagination Component",
+    "category": "utility",
+    "description": "A reusable, responsive pagination component for handling large datasets with configurable options.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "link": "./projects/PaginationComponent/index.html",
+    "icon": "ri-file-list-3-line",
+    "coverStyle": "background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%); color:#1e40af;"
+  },
+  
   {
     "title": "Drag and Drop List Manager",
     "category": "utility",
