@@ -1045,6 +1045,15 @@
     "coverStyle": "background: linear-gradient(135deg, #020617 0%, #4f46e5 100%); color:#e0e7ff;"
   },
   {
+    "title": "Secret Diary App",
+    "category": "utility",
+    "description": "Securely store and manage your personal thoughts and entries.",
+    "tech": ["HTML", "CSS", "JS"],
+    "link": "./projects/SecretDiaryApp/index.html",
+    "icon": "ri-file-copy-2-line",
+    "coverStyle": "background:#7a1050; color:white;"
+  },
+  {
     "title": "One Button Boss Fight",
     "category": "game",
     "description": "Defeat a boss using a single button with timing-based attacks and dodges.",
