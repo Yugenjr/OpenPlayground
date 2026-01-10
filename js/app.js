@@ -223,25 +223,37 @@ class ProjectManager {
             const coverStyle = project.coverStyle || '';
             const coverClass = project.coverClass || '';
 
+            const sourceUrl = this.getSourceCodeUrl(project.link);
+
             return `
-                <a href="${this.escapeHtml(project.link)}" class="card" data-category="${this.escapeHtml(project.category)}">
-                    <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" 
-                            data-project-title="${this.escapeHtml(project.title)}" 
-                            onclick="event.preventDefault(); event.stopPropagation(); window.toggleProjectBookmark(this, '${this.escapeHtml(project.title)}', '${this.escapeHtml(project.link)}', '${this.escapeHtml(project.category)}', '${this.escapeHtml(project.description || '')}');">
-                        <i class="${isBookmarked ? 'ri-bookmark-fill' : 'ri-bookmark-line'}"></i>
-                    </button>
-                    <div class="card-cover ${coverClass}" style="${coverStyle}">
-                        <i class="${this.escapeHtml(project.icon || 'ri-code-s-slash-line')}"></i>
+                <div class="card" data-category="${this.escapeHtml(project.category)}" onclick="window.location.href='${this.escapeHtml(project.link)}'; event.stopPropagation();">
+                    <div class="card-actions">
+                        <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" 
+                                data-project-title="${this.escapeHtml(project.title)}" 
+                                onclick="event.preventDefault(); event.stopPropagation(); window.toggleProjectBookmark(this, '${this.escapeHtml(project.title)}', '${this.escapeHtml(project.link)}', '${this.escapeHtml(project.category)}', '${this.escapeHtml(project.description || '')}');"
+                                title="${isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}">
+                            <i class="${isBookmarked ? 'ri-bookmark-fill' : 'ri-bookmark-line'}"></i>
+                        </button>
+                        <a href="${sourceUrl}" target="_blank" class="source-btn" 
+                           onclick="event.stopPropagation();" 
+                           title="View Source Code">
+                            <i class="ri-github-fill"></i>
+                        </a>
                     </div>
-                    <div class="card-content">
-                        <div class="card-header-flex">
-                            <h3 class="card-heading">${this.escapeHtml(project.title)}</h3>
-                            <span class="category-tag">${this.capitalize(project.category)}</span>
+                    <div class="card-link">
+                        <div class="card-cover ${coverClass}" style="${coverStyle}">
+                            <i class="${this.escapeHtml(project.icon || 'ri-code-s-slash-line')}"></i>
                         </div>
-                        <p class="card-description">${this.escapeHtml(project.description || '')}</p>
-                        <div class="card-tech">${techHtml}</div>
+                        <div class="card-content">
+                            <div class="card-header-flex">
+                                <h3 class="card-heading">${this.escapeHtml(project.title)}</h3>
+                                <span class="category-tag">${this.capitalize(project.category)}</span>
+                            </div>
+                            <p class="card-description">${this.escapeHtml(project.description || '')}</p>
+                            <div class="card-tech">${techHtml}</div>
+                        </div>
                     </div>
-                </a>
+                </div>
             `;
         }).join('');
     }
@@ -270,6 +282,9 @@ class ProjectManager {
                             </button>
                             <a href="${this.escapeHtml(project.link)}" class="list-card-btn" title="Open Project">
                                 <i class="ri-external-link-line"></i>
+                            </a>
+                            <a href="${this.getSourceCodeUrl(project.link)}" target="_blank" class="list-card-btn" title="View Source Code">
+                                <i class="ri-github-fill"></i>
                             </a>
                         </div>
                     </div>
@@ -360,6 +375,20 @@ class ProjectManager {
         const div = document.createElement('div');
         div.textContent = str;
         return div.innerHTML;
+    }
+
+    getSourceCodeUrl(link) {
+        if (!link) return 'https://github.com/YadavAkhileshh/OpenPlayground';
+
+        let path = link;
+        // Remove leading ./
+        if (path.startsWith('./')) {
+            path = path.slice(2);
+        }
+        // Remove trailing /index.html or index.html
+        path = path.replace(/\/index\.html$/, '').replace(/^index\.html$/, '');
+
+        return `https://github.com/YadavAkhileshh/OpenPlayground/tree/main/${path}`;
     }
 }
 
