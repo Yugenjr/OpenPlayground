@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Invaders | Focus & Fun</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <h1><i class="fas fa-gamepad"></i> Emoji Invaders</h1>
+                <p class="subtitle">Destroy distracting emojis with focus power!</p>
+            </div>
+            <div class="header-right">
+                <div class="game-info">
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Lives: <span id="lives">3</span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Score: <span id="score">0</span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Level: <span id="level">1</span></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="game-area">
+                <div class="game-container">
+                    <canvas id="gameCanvas" width="800" height="500"></canvas>
+                    
+                    <div class="game-overlay" id="startScreen">
+                        <div class="overlay-content">
+                            <h2><i class="fas fa-rocket"></i> Emoji Invaders</h2>
+                            <p class="game-description">
+                                Destroy distracting emojis with your focus laser!<br>
+                                Collect motivational quotes as power-ups.
+                            </p>
+                            <div class="controls">
+                                <h3><i class="fas fa-keyboard"></i> Controls</h3>
+                                <div class="control-item">
+                                    <span class="key">← →</span>
+                                    <span>Move spaceship</span>
+                                </div>
+                                <div class="control-item">
+                                    <span class="key">SPACE</span>
+                                    <span>Shoot laser</span>
+                                </div>
+                                <div class="control-item">
+                                    <span class="key">P</span>
+                                    <span>Pause game</span>
+                                </div>
+                            </div>
+                            <button id="startGameBtn" class="btn primary">
+                                <i class="fas fa-play"></i> Start Game
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-overlay" id="pauseScreen" style="display: none;">
+                        <div class="overlay-content">
+                            <h2><i class="fas fa-pause"></i> Game Paused</h2>
+                            <div class="current-stats">
+                                <div class="stat">
+                                    <span>Score</span>
+                                    <span id="pauseScore">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Level</span>
+                                    <span id="pauseLevel">1</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Lives</span>
+                                    <span id="pauseLives">3</span>
+                                </div>
+                            </div>
+                            <button id="resumeGameBtn" class="btn primary">
+                                <i class="fas fa-play"></i> Resume Game
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-overlay" id="gameOverScreen" style="display: none;">
+                        <div class="overlay-content">
+                            <h2><i class="fas fa-gamepad"></i> Game Over</h2>
+                            <div class="final-score">
+                                <div class="score-display">
+                                    <span>Final Score</span>
+                                    <span id="finalScore">0</span>
+                                </div>
+                                <div class="score-display">
+                                    <span>Level Reached</span>
+                                    <span id="finalLevel">1</span>
+                                </div>
+                            </div>
+                            <div class="motivation-message">
+                                <i class="fas fa-quote-left"></i>
+                                <p id="motivationQuote">Every great achievement begins with a single focused thought!</p>
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                            <button id="restartGameBtn" class="btn primary">
+                                <i class="fas fa-redo"></i> Play Again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="pauseBtn" class="btn secondary">
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
+                    <button id="soundToggle" class="btn secondary">
+                        <i class="fas fa-volume-up"></i> Sound
+                    </button>
+                    <button id="helpBtn" class="btn secondary">
+                        <i class="fas fa-question-circle"></i> Help
+                    </button>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-header">
+                        <h3><i class="fas fa-robot"></i> Emoji Enemies</h3>
+                    </div>
+                    <div class="enemies-list">
+                        <div class="enemy-item">
+                            <div class="enemy-emoji">😴</div>
+                            <div class="enemy-info">
+                                <div class="enemy-name">Sleepy Face</div>
+                                <div class="enemy-desc">Slow but tough</div>
+                            </div>
+                            <div class="enemy-points">10 pts</div>
+                        </div>
+                        <div class="enemy-item">
+                            <div class="enemy-emoji">😵</div>
+                            <div class="enemy-info">
+                                <div class="enemy-name">Dizzy Face</div>
+                                <div class="enemy-desc">Moves erratically</div>
+                            </div>
+                            <div class="enemy-points">15 pts</div>
+                        </div>
+                        <div class="enemy-item">
+                            <div class="enemy-emoji">🤯</div>
+                            <div class="enemy-info">
+                                <div class="enemy-name">Exploding Head</div>
+                                <div class="enemy-desc">Fast and dangerous</div>
+                            </div>
+                            <div class="enemy-points">25 pts</div>
+                        </div>
+                        <div class="enemy-item">
+                            <div class="enemy-emoji">👾</div>
+                            <div class="enemy-info">
+                                <div class="enemy-name">Alien Monster</div>
+                                <div class="enemy-desc">Boss enemy</div>
+                            </div>
+                            <div class="enemy-points">50 pts</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-header">
+                        <h3><i class="fas fa-star"></i> Power-ups</h3>
+                    </div>
+                    <div class="powerups-list">
+                        <div class="powerup-item">
+                            <div class="powerup-icon" style="background-color: #4f46e5;">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="powerup-info">
+                                <div class="powerup-name">Focus Boost</div>
+                                <div class="powerup-desc">Faster shooting for 10s</div>
+                            </div>
+                        </div>
+                        <div class="powerup-item">
+                            <div class="powerup-icon" style="background-color: #10b981;">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="powerup-info">
+                                <div class="powerup-name">Shield</div>
+                                <div class="powerup-desc">Temporary invincibility</div>
+                            </div>
+                        </div>
+                        <div class="powerup-item">
+                            <div class="powerup-icon" style="background-color: #f59e0b;">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                            <div class="powerup-info">
+                                <div class="powerup-name">Motivation</div>
+                                <div class="powerup-desc">Extra points + quote</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-header">
+                        <h3><i class="fas fa-trophy"></i> High Scores</h3>
+                    </div>
+                    <div class="highscores-list" id="highscoresList">
+                        <div class="highscore-item">
+                            <span class="rank">1</span>
+                            <span class="player">Focus Master</span>
+                            <span class="score">1250</span>
+                        </div>
+                        <div class="highscore-item">
+                            <span class="rank">2</span>
+                            <span class="player">Emoji Hunter</span>
+                            <span class="score">980</span>
+                        </div>
+                        <div class="highscore-item">
+                            <span class="rank">3</span>
+                            <span class="player">Laser Pro</span>
+                            <span class="score">750</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        
+        <footer class="footer">
+            <div class="current-powerups" id="currentPowerups">
+                <div class="powerup-active" style="display: none;">
+                    <i class="fas fa-bolt"></i>
+                    <span>Focus Boost: <span class="timer">10s</span></span>
+                </div>
+                <div class="powerup-active" style="display: none;">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Shield: <span class="timer">8s</span></span>
+                </div>
+            </div>
+            <div class="current-quote" id="currentQuote">
+                <i class="fas fa-quote-left"></i>
+                <span>Focus is the art of ignoring distractions</span>
+                <i class="fas fa-quote-right"></i>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
