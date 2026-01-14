@@ -335,26 +335,16 @@
                     };
 
                     try {
-                        const response = await fetch('http://localhost:3000/api/contact', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(formData)
-                        });
+                        // Simulate a short delay for sending
+                        await new Promise(resolve => setTimeout(resolve, 800));
 
-                        const result = await response.json();
-
-                        if (response.ok) {
-                            successMsg.style.display = 'flex';
-                            contactForm.reset();
-                        } else {
-                            throw new Error(result.error || 'Failed to send message');
-                        }
+                        // Show success message and reset form
+                        successMsg.style.display = 'flex';
+                        contactForm.reset();
                     } catch (error) {
                         console.error('Submission error:', error);
                         errorMsg.style.display = 'flex';
-                        errorText.innerText = error.message || 'Oops! Something went wrong. Please try again.';
+                        errorText.innerText = 'Oops! Something went wrong. Please try again.';
                     } finally {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = '<span>Send Message</span><i class="ri-send-plane-fill"></i>';
