@@ -743,6 +743,20 @@
     "coverStyle": "background: #8b5cf6; color: white;"
   },
   {
+    "title": "Word Scramble Insane",
+    "category": "games",
+    "description": "An insane-level word scramble game with neon-glass visuals, combo streaks, XP-based leveling, smart hints, and fast-paced brain challenges.",
+    "tech": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+   ],
+    "link": "./projects/word-scramble/index.html",
+    "icon": "ri-brain-line",
+    "coverStyle": "background: linear-gradient(135deg, #22ffcc, #00e5ff, #c77dff); color: #020617;"
+  },
+
+  {
     "title": "BMI Calculator",
     "category": "utility",
     "difficulty": "Beginner",
