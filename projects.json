@@ -1104,6 +1104,20 @@
     "coverStyle": "background: #6366f1; color: white;"
   },
   {
+    "title": "News Aggregator",
+    "category": "productivity",
+    "difficulty": "Advanced",
+    "description": "Daily news summary from multiple sources.",
+    "tech": [
+      "HTML",
+      "CSS",
+      "JS"
+    ],
+    "link": "./projects/news/index.html",
+    "icon": "ri-add-circle-line",
+    "coverStyle": "background: #6366f1; color: white;"
+  },
+  {
     "title": "Counter App",
     "category": "utility",
     "difficulty": "Beginner",
