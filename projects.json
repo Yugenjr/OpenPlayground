@@ -369,6 +369,19 @@
     "icon": "ri-image-add-line",
     "coverStyle": "background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white;"
   },
+   {
+  "title": "Basket Ball Game ",
+  "category": "game",
+  "description": "A 3D backet ball shooting game with score tracking and dynamic hoop movement, built using Three.js for immersive graphics and smooth gameplay.",
+  "tech": [
+    "HTML",
+    "CSS",
+    "JS"
+  ],
+  "link": "./projects/basket-ball-game/index.html",
+  "icon": "ri-basketball-line",
+  "coverClass": "background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white;"
+  },
   {
     "title": "Stack vs Queue Visualizer",
     "category": "utility",
